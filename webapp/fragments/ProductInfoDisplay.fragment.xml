@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog title="Product Info">
+		<f:SimpleForm id="productInfoForm" editable="false" binding="{}" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+			labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+			singleContainerFullSize="false">
+			<f:content>
+				<Label text="ProductID"/>
+				<Text text="{ProductID}"/>
+				<Label text="ProductName."/>
+				<Text text="{ProductName}"/>
+				<Label text="SupplierID"/>
+				<Text text="{SupplierID}"/>
+				<Label text="CategoryID"/>
+				<Text text="{CategoryID}"/>
+				<Label text="QuantityPerUnit"/>
+				<Text text="{QuantityPerUnit}"/>
+				<Label text="UnitPrice"/>
+				<Text text="{UnitPrice}"/>
+				<Label text="UnitsInStock"/>
+				<Text text="{UnitsInStock}"/>
+				<Label text="UnitsOnOrder"/>
+				<Text text="{UnitsOnOrder}"/>
+				<Label text="ReorderLevel"/>
+				<Text text="{ReorderLevel}"/>
+				<Label text="Discontinued"/>
+				<Text text="{parts:['Discontinued'],formatter:'.formatter.discontinued'}"/>
+			</f:content>
+		</f:SimpleForm>
+		<endButton>
+			<Button type="Emphasized" text="close" press=".onCloseDialog"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,56 @@
+<mvc:View controllerName="com.yash.Assignment-8.controller.Products" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ux="sap.uxap" xmlns:grid="sap.ui.layout.cssgrid" xmlns:f="sap.f">
+	<App>
+		<pages>
+			<Page id="page">
+				<customHeader>
+					<Bar>
+						<contentMiddle>
+							<Title id="customerTitle" text="{i18n>productsTitle}"/>
+						</contentMiddle>
+						<contentRight>
+							<Toolbar>
+								<Button type="Transparent" icon="sap-icon://globe" iconFirst="true" press=".showLanguages" tooltip="{i18n>languageButton}"/>
+								<Text id="appVersion" text="{i18n>appVersion}"/>
+							</Toolbar>
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<footer>
+					<OverflowToolbar id="idCartFooter">
+						<l:Grid hSpacing="2" defaultSpan="XL3 L3 M6 S12" class="sapUiSmallMarginTop">
+							<Button id="EmployeesButton" width="18rem" type="Emphasized" text="{i18n>EmployeesButton}" press=".onEmployeesButton"/>
+							<Button id="CustomerButton" width="18rem" type="Emphasized" text="{i18n>CustomerButton}" press="onCustomersButton"/>
+							<Button id="ProductsButton" width="18rem" type="Emphasized" text="{i18n>ProductsButton}"/>
+							<Button id="SupplierButton" width="18rem" type="Emphasized" text="{i18n>SupplierButton}" press=".onSupplierButton"/>
+						</l:Grid>
+					</OverflowToolbar>
+				</footer>
+				<content>
+					<ux:ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="true">
+						<ux:sections width="100%">
+							<ux:ObjectPageSection showTitle="false" class="section-background">
+								<ux:subSections width="100%">
+									<ux:ObjectPageSubSection >
+										<f:GridList id="gridList" items="{/Products}" class="sapUiSmallMarginTop">
+											<f:GridListItem type="Active" press="onProductListItemPress">
+												<VBox height="100%">
+													<VBox class="sapUiSmallMargin">
+														<layoutData>
+															<FlexItemData growFactor="1" shrinkFactor="0"/></layoutData>
+														<Title text="{ProductName}" wrapping="true"/>
+														<Label text="{parts:['Discontinued'],formatter:'.formatter.discontinued'}" wrapping="true"/>
+													</VBox>
+												</VBox>
+											</f:GridListItem>
+										</f:GridList>
+									</ux:ObjectPageSubSection>
+								</ux:subSections>
+							</ux:ObjectPageSection>
+						</ux:sections>
+					</ux:ObjectPageLayout>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

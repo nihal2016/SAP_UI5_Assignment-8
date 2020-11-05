@@ -1,0 +1,219 @@
+<mvc:View controllerName="com.yash.Assignment-8.controller.Welcome" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:ux="sap.uxap">
+	<App id="app">
+		<pages>
+			<Page id="WelcomePage" title="{i18n>title}">
+				<customHeader>
+					<Bar>
+						<contentMiddle>
+							<Title id="employeeTitle" text="{i18n>employeeTitle}"/>
+						</contentMiddle>
+						<contentRight>
+							<Toolbar>
+								<Button type="Transparent" icon="sap-icon://globe" iconFirst="true" press=".showLanguages" tooltip="{i18n>languageButton}"/>
+								<Text id="appVersion" text="{i18n>appVersion}"/>
+							</Toolbar>
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<footer>
+					<OverflowToolbar id="idCartFooter">
+						<l:Grid hSpacing="2" defaultSpan="XL3 L3 M6 S12" class="sapUiSmallMarginTop">
+							<Button id="EmployeesButton" width="18rem" type="Emphasized" text="{i18n>EmployeesButton}"/>
+							<Button id="CustomerButton" width="18rem" type="Emphasized" text="{i18n>CustomerButton}" press=".onCustomerButton"/>
+							<Button id="ProductsButton" width="18rem" type="Emphasized" text="{i18n>ProductsButton}" press=".onProductsButton"/>
+							<Button id="SupplierButton" width="18rem" type="Emphasized" text="{i18n>SupplierButton}" press=".onSupplierButton"/>
+						</l:Grid>
+					</OverflowToolbar>
+				</footer>
+				<content>
+					<l:Splitter height="100%" width="100%">
+						<VBox>
+							<layoutData>
+								<l:SplitterLayoutData resizable="false" size="33%"/>
+							</layoutData>
+							<ux:ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="true">
+								<ux:headerTitle>
+									<ux:ObjectPageDynamicHeaderTitle>
+										<ux:heading>
+											<Title id="totalEmployees" text=""/>
+										</ux:heading>
+										<ux:actions>
+											<OverflowToolbarButton id="sortUser" icon="sap-icon://sort" press=".handleSortButtonPressed"/>
+										</ux:actions>
+									</ux:ObjectPageDynamicHeaderTitle>
+								</ux:headerTitle>
+								<ux:sections width="100%">
+									<ux:ObjectPageSection showTitle="false" class="section-background">
+										<ux:subSections width="100%">
+											<ux:ObjectPageSubSection >
+												<Table id="employeesListTable" updateFinished="countTotalEmployees" width="100%" items="{/Employees}">
+													<columns>
+														<Column>
+															<Text text="{i18n>employeesListTableEmployeeIdColumn}"/>
+														</Column>
+														<Column minScreenWidth="Phone" demandPopin="true">
+															<Text text="{i18n>employeesListTableNameColumn}"/>
+														</Column>
+														<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+															<Text text="{i18n>employeesListTableTitleColumn}"/>
+														</Column>
+														<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+															<Text text="{i18n>employeesListTableAddressColumn}"/>
+														</Column>
+														<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+															<Text text="{i18n>employeesListTableCityColumn}"/>
+														</Column>
+														<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+															<Text text="{i18n>employeesListTableCountryColumn}"/>
+														</Column>
+														<Column hAlign="End">
+															<Text text="{i18n>employeesListTableHireDateColumn}"/>
+														</Column>
+													</columns>
+													<items>
+														<ColumnListItem vAlign="Middle" type="Active" press=".showOdersListTable">
+															<cells>
+																<ObjectIdentifier text="{EmployeeID}"/>
+																<Text text="{FirstName} {LastName}"/>
+																<Text text="{Title}"/>
+																<Text text="{Address}"/>
+																<Text text="{City}"/>
+																<Text text="{Country}"/>
+																<Text text="{parts:['HireDate'],formatter:'.formatter.date'}"/>
+															</cells>
+														</ColumnListItem>
+													</items>
+												</Table>
+											</ux:ObjectPageSubSection>
+										</ux:subSections>
+									</ux:ObjectPageSection>
+								</ux:sections>
+							</ux:ObjectPageLayout>
+						</VBox>
+						<VBox>
+							<layoutData>
+								<l:SplitterLayoutData resizable="false" size="auto"/>
+							</layoutData>
+							<ux:ObjectPageLayout enableLazyLoading="true">
+								<ux:headerTitle>
+									<ux:ObjectPageDynamicHeaderTitle>
+										<ux:heading>
+											<Title id="totalOrders" text=""/>
+										</ux:heading>
+										<ux:actions>
+											<OverflowToolbarButton id="sortOrders" icon="sap-icon://sort" press=".handleOrdersSortButtonPressed"/>
+										</ux:actions>
+									</ux:ObjectPageDynamicHeaderTitle>
+								</ux:headerTitle>
+								<ux:sections width="100%">
+									<ux:ObjectPageSection showTitle="false" class="section-background">
+										<ux:subSections width="100%">
+											<ux:ObjectPageSubSection >
+												<Table id="ordersListTable" updateFinished="countTotalOrders" width="100%" items="{Orders}">
+													<columns>
+														<Column minScreenWidth="Phone" demandPopin="true">
+															<Text text="{i18n>ordersListTableOrderIDColumn}"/>
+														</Column>
+														<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+															<Text text="{i18n>ordersListTableCustomerIDColumn}"/>
+														</Column>
+														<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+															<Text text="{i18n>ordersListTableOrderDateColumn}"/>
+														</Column>
+														<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+															<Text text="{i18n>ordersListTableShipViaColumn}"/>
+														</Column>
+														<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+															<Text text="{i18n>ordersListTableShipNameColumn}"/>
+														</Column>
+														<Column>
+															<Text text="{i18n>ordersListTableShipAddressColumn}"/>
+														</Column>
+														<Column hAlign="End">
+															<Text text="{i18n>ordersListTableShippedDateColumn}"/>
+														</Column>
+													</columns>
+													<items>
+														<ColumnListItem vAlign="Middle" type="Active" press=".showOderDetailsListTable">
+															<cells>
+																<ObjectIdentifier text="{OrderID}"/>
+																<Text text="{CustomerID}"/>
+																<Text text="{parts:['OrderDate'],formatter:'.formatter.date'}"/>
+																<Text text="{ShipVia}"/>
+																<Text text="{ShipName}"/>
+																<Text text="{ShipAddress}, {ShipCity}, {ShipCountry}"/>
+																<Text text="{parts:['ShippedDate'],formatter:'.formatter.date'}"/>
+															</cells>
+														</ColumnListItem>
+													</items>
+												</Table>
+											</ux:ObjectPageSubSection>
+										</ux:subSections>
+									</ux:ObjectPageSection>
+								</ux:sections>
+							</ux:ObjectPageLayout>
+						</VBox>
+						<Page showHeader="false">
+							<layoutData>
+								<l:SplitterLayoutData size="33%"/>
+							</layoutData>
+							<content>
+								<ux:ObjectPageLayout enableLazyLoading="true">
+									<ux:headerTitle>
+										<ux:ObjectPageDynamicHeaderTitle>
+											<ux:heading>
+												<Title id="totalOrderDetails" text=""/>
+											</ux:heading>
+											<ux:actions>
+												<OverflowToolbarButton id="sortProducts" icon="sap-icon://sort" press=".handleOrderDetailsSortButtonPressed"/>
+											</ux:actions>
+										</ux:ObjectPageDynamicHeaderTitle>
+									</ux:headerTitle>
+									<ux:sections width="100%">
+										<ux:ObjectPageSection showTitle="false" class="section-background">
+											<ux:subSections width="100%">
+												<ux:ObjectPageSubSection >
+													<Table id="OrderDetailsListTable" updateFinished="countTotalOrderDetails" width="100%" items="{Order_Details}">
+														<columns>
+															<Column minScreenWidth="Phone" demandPopin="true">
+																<Text text="{i18n>Order_DetailsListTableOrderIDColumn}"/>
+															</Column>
+															<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+																<Text text="{i18n>Order_DetailsListTableProductIDColumn}"/>
+															</Column>
+															<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+																<Text text="{i18n>Order_DetailsListTableUnitPriceColumn}"/>
+															</Column>
+															<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+																<Text text="{i18n>Order_DetailsListTableQuantityColumn}"/>
+															</Column>
+															<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+																<Text text="{i18n>Order_DetailsListTableDiscountColumn}"/>
+															</Column>
+														</columns>
+														<items>
+															<ColumnListItem vAlign="Middle" type="Active">
+																<cells>
+																	<ObjectIdentifier text="{OrderID}"/>
+																	<Text text="{ProductID}"/>
+																	<Text text="{UnitPrice}"/>
+																	<Text text="{Quantity}"/>
+																	<Text text="{Discount}"/>
+																</cells>
+															</ColumnListItem>
+														</items>
+													</Table>
+												</ux:ObjectPageSubSection>
+											</ux:subSections>
+										</ux:ObjectPageSection>
+									</ux:sections>
+								</ux:ObjectPageLayout>
+							</content>
+						</Page>
+					</l:Splitter>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

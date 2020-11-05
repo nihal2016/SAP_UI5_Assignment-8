@@ -1,0 +1,99 @@
+<mvc:View controllerName="com.yash.Assignment-8.controller.Suppliers" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ux="sap.uxap">
+	<App>
+		<pages>
+			<Page id="page">
+				<customHeader>
+					<Bar>
+						<contentMiddle>
+							<Title id="customerTitle" text="{i18n>suppliersTitle}"/>
+						</contentMiddle>
+						<contentRight>
+							<Toolbar>
+								<Button type="Transparent" icon="sap-icon://globe" iconFirst="true" press=".showLanguages" tooltip="{i18n>languageButton}"/>
+								<Text id="appVersion" text="{i18n>appVersion}"/>
+							</Toolbar>
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<footer>
+					<OverflowToolbar id="idCartFooter">
+						<l:Grid hSpacing="2" defaultSpan="XL3 L3 M6 S12" class="sapUiSmallMarginTop">
+							<Button id="EmployeesButton" width="18rem" type="Emphasized" text="{i18n>EmployeesButton}" press=".onEmployeesButton"/>
+							<Button id="CustomerButton" width="18rem" type="Emphasized" text="{i18n>CustomerButton}" press="onCustomersButton"/>
+							<Button id="ProductsButton" width="18rem" type="Emphasized" text="{i18n>ProductsButton}" press=".onProductsButton"/>
+							<Button id="SupplierButton" width="18rem" type="Emphasized" text="{i18n>SupplierButton}"/>
+						</l:Grid>
+					</OverflowToolbar>
+				</footer>
+				<content>
+					<VBox>
+						<layoutData>
+							<l:SplitterLayoutData resizable="false" size="33%"/>
+						</layoutData>
+						<ux:ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="true">
+							<ux:headerTitle>
+								<ux:ObjectPageDynamicHeaderTitle>
+									<ux:actions>
+										<Button text="select Supplier" press=".selectSupplierDialog"/>
+										<OverflowToolbarButton id="sortUser" icon="sap-icon://sort" press=".handleSortButtonPressed"/>
+									</ux:actions>
+								</ux:ObjectPageDynamicHeaderTitle>
+							</ux:headerTitle>
+							<ux:sections width="100%">
+								<ux:ObjectPageSection showTitle="false" class="section-background">
+									<ux:subSections width="100%">
+										<ux:ObjectPageSubSection >
+											<Table id="suppliersListTable" width="100%" items="{/selectedSuppliers}">
+												<columns>
+													<Column>
+														<Text text="{i18n>suppliersListTableSupplierIDColumn}"/>
+													</Column>
+													<Column minScreenWidth="Phone" demandPopin="true">
+														<Text text="{i18n>suppliersListTableContactNameColumn}"/>
+													</Column>
+													<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+														<Text text="{i18n>suppliersListTableContactTitleColumn}"/>
+													</Column>
+													<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+														<Text text="{i18n>suppliersListTableContactCompanyNameColumn}"/>
+													</Column>
+													<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+														<Text text="{i18n>suppliersListTableAddressColumn}"/>
+													</Column>
+													<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+														<Text text="{i18n>suppliersListTableCityColumn}"/>
+													</Column>
+													<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+														<Text text="{i18n>suppliersListTableCountryColumn}"/>
+													</Column>
+													<Column hAlign="End">
+														<Text text="{i18n>suppliersListTablePhoneColumn}"/>
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem vAlign="Middle" type="Active" press=".showOdersListTable">
+														<cells>
+															<ObjectIdentifier text="{SupplierID}"/>
+															<Text text="{ContactName}"/>
+															<Text text="{ContactTitle}"/>
+															<Text text="{CompanyName}"/>
+															<Text text="{Address}"/>
+															<Text text="{City}"/>
+															<Text text="{Country}"/>
+															<Text text="{Phone}"/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+										</ux:ObjectPageSubSection>
+									</ux:subSections>
+								</ux:ObjectPageSection>
+							</ux:sections>
+						</ux:ObjectPageLayout>
+					</VBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

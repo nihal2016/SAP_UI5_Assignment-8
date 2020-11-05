@@ -1,0 +1,52 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Dialog title="Select Suppliers">
+		<Table id="suppliersSelectTable" mode="MultiSelect" width="100%" items="{/Suppliers}">
+			<columns>
+				<Column>
+					<Text text="{i18n>suppliersSelectTableSupplierIDColumn}"/>
+				</Column>
+				<Column minScreenWidth="Phone" demandPopin="true">
+					<Text text="{i18n>suppliersSelectTableContactNameColumn}"/>
+				</Column>
+				<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>suppliersSelectTableContactTitleColumn}"/>
+				</Column>
+				<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>suppliersSelectTableContactCompanyNameColumn}"/>
+				</Column>
+				<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>suppliersSelectTableAddressColumn}"/>
+				</Column>
+				<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>suppliersSelectTableCityColumn}"/>
+				</Column>
+				<Column minScreenWidth="Phone" demandPopin="true" hAlign="Center">
+					<Text text="{i18n>suppliersSelectTableCountryColumn}"/>
+				</Column>
+				<Column hAlign="End">
+					<Text text="{i18n>suppliersSelectTablePhoneColumn}"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle" type="Active">
+					<cells>
+						<ObjectIdentifier text="{SupplierID}"/>
+						<Text text="{ContactName}"/>
+						<Text text="{ContactTitle}"/>
+						<Text text="{CompanyName}"/>
+						<Text text="{Address}"/>
+						<Text text="{City}"/>
+						<Text text="{Country}"/>
+						<Text text="{Phone}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<beginButton>
+			<Button type="Default" text="Open" press=".openSelectedSuppliers"/>
+		</beginButton>
+		<endButton>
+			<Button type="Emphasized" text="close" press=".onCloseDialog"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
